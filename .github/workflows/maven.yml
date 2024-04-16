@@ -33,7 +33,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build JAR with Maven
-      run: mvn -B package
+      run: mvn compile
 
     # Configure Workload Identity Federation via a credentials file.
     - id: 'auth'
