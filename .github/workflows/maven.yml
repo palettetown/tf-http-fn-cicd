@@ -53,7 +53,7 @@ jobs:
           --gen2 \
           --entry-point=functions.HelloWorld \
           --runtime=java17 \
-          --region=REGION \
+          --region=us-central1 \
           --source=. \
           --trigger-http \
           --allow-unauthenticated        
