@@ -14,7 +14,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  id-token: 'write'  
+
 jobs:
+  # Task 1: Build Java Application using Maven
   build:
 
     runs-on: ubuntu-latest
@@ -27,9 +32,28 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build JAR with Maven
+      run: mvn -B package
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    # Configure Workload Identity Federation via a credentials file.
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        create_credentials_file: true
+        workload_identity_provider: 'projects/198122355685/locations/global/workloadIdentityPools/githubactions/providers/github'
+        service_account: 'ksyservacc@my-second-project-418213.iam.gserviceaccount.com'
+        token_format: "access_token"
+    
+    - id: 'gcloud'
+      name: 'Auth login & Build Function'
+      run: |-             
+        gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
+        gcloud functions deploy java-http-function \
+          --gen2 \
+          --entry-point=functions.HelloWorld \
+          --runtime=java17 \
+          --region=REGION \
+          --source=. \
+          --trigger-http \
+          --allow-unauthenticated        
