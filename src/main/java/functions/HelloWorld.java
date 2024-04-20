@@ -2,6 +2,10 @@
 package functions;
 
 import com.google.cloud.functions.HttpFunction;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+
 import com.google.cloud.functions.HttpRequest;
 import com.google.cloud.functions.HttpResponse;
 import java.io.BufferedWriter;
@@ -14,5 +18,24 @@ public class HelloWorld implements HttpFunction {
       throws IOException {
     BufferedWriter writer = response.getWriter();
     writer.write("Hello World!");
+    
+    // Get a new datasource from the method we defined before
+    DataSource dataSource = CloudSqlConnectionPoolFactory.createConnectionPool();
+
+    // Run a query and get the result
+    ResultSet rs;
+	try {
+		rs = dataSource.getConnection().prepareStatement("select * from birds").executeQuery();
+		
+	    // print the results to the console
+	    while (rs.next()) {
+	      System.out
+	          .println("name: " + rs.getString("bird") + " description:" + rs.getString("description"));
+	    }  
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
   }
 }

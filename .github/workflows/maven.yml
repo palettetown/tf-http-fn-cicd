@@ -44,16 +44,24 @@ jobs:
         workload_identity_provider: 'projects/198122355685/locations/global/workloadIdentityPools/githubactions/providers/github'
         service_account: 'ksyservacc@my-second-project-418213.iam.gserviceaccount.com'
         token_format: "access_token"
-    
+
+#        gcloud functions deploy java-http-function \
+#          --gen2 \
+#          --entry-point=functions.HelloWorld \
+#          --runtime=java17 \
+#          --region=us-central1 \
+#          --source=. \
+#          --trigger-http \
+#          --allow-unauthenticated
+
     - id: 'gcloud'
       name: 'Auth login & Build Function'
       run: |-             
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
-        gcloud functions deploy java-http-function \
-          --gen2 \
-          --entry-point=functions.HelloWorld \
-          --runtime=java17 \
-          --region=us-central1 \
-          --source=. \
-          --trigger-http \
-          --allow-unauthenticated        
+        gcloud scheduler jobs create http my-scheduler \
+          --schedule="every 5 minutes" \
+          --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \
+          --message-body='{}' \
+          --time-zone="us-central1" \
+          --internal-only \
+          --http-method="POST"          
