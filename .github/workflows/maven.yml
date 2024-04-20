@@ -47,19 +47,21 @@ jobs:
 
 #using compute sa to build
 
-#        gcloud functions deploy java-http-function \
-#          --gen2 \
-#          --entry-point=functions.HelloWorld \
-#          --runtime=java17 \
-#          --region=us-central1 \
-#          --source=. \
-#          --trigger-http \
-#          --allow-unauthenticated
+
 
     - id: 'gcloud'
       name: 'Auth login & Build Function'
       run: |-             
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
+        gcloud functions deploy java-http-function \
+          --gen2 \
+          --entry-point=functions.HelloWorld \
+          --runtime=java17 \
+          --region=us-central1 \
+          --source=. \
+          --trigger-http \
+          --allow-unauthenticated        
+        gcloud scheduler jobs delete my-scheduler
         gcloud scheduler jobs create http my-scheduler \
           --schedule="every 5 minutes" \
           --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \

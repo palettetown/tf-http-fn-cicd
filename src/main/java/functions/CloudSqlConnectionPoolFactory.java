@@ -10,7 +10,7 @@ public class CloudSqlConnectionPoolFactory {
   // (https://docs.oracle.com/javase/tutorial/essential/environment/env.html)
   // or Cloud Secret Manager (https://cloud.google.com/secret-manager)
   private static final String INSTANCE_CONNECTION_NAME =
-      "vaulted-hawk-406722:northamerica-northeast2:my-sample-database";
+      "my-second-project-418213:us-central1:my-instance";
   private static final String DB_USER = "postgres";
   private static final String DB_PASS = "postgres";
   private static final String DB_NAME = "bird_encyclopedia";

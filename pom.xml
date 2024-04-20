@@ -29,7 +29,19 @@
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>5.1.0</version>
-    </dependency>
+    </dependency>    
+	<dependency>
+	  <groupId>com.google.cloud.sql</groupId>
+	  <artifactId>postgres-socket-factory</artifactId>
+	  <version>1.11.0</version>
+	</dependency>
+	<dependency>
+	  <!-- The postgres driver library required to interface with PostgreSQL 
+	  via JDBC -->
+	  <groupId>org.postgresql</groupId>
+	  <artifactId>postgresql</artifactId>
+	  <version>42.5.4</version>
+	</dependency>	
   </dependencies>
 
   <build>
