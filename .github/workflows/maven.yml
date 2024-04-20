@@ -58,7 +58,6 @@ jobs:
       name: 'Auth login & Build Function'
       run: |-             
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
-        gcloud services enable cloudscheduler.googleapis.com
         gcloud scheduler jobs create http my-scheduler \
           --schedule="every 5 minutes" \
           --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \
