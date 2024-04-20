@@ -60,7 +60,7 @@ jobs:
       name: 'Auth login & Build Function'
       run: |-             
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
-        gcloud functions deploy java-http-function \
+        gcloud functions deploy java-http-function2 \
           --gen2 \
           --entry-point=functions.HelloWorld \
           --runtime=java17 \
