@@ -45,6 +45,8 @@ jobs:
         service_account: 'ksyservacc@my-second-project-418213.iam.gserviceaccount.com'
         token_format: "access_token"
 
+#using compute sa to build
+
 #        gcloud functions deploy java-http-function \
 #          --gen2 \
 #          --entry-point=functions.HelloWorld \
@@ -64,4 +66,3 @@ jobs:
           --message-body='{}' \
           --time-zone="America/Montreal" \
           --location="us-central1"
-          --http-method="POST"          
