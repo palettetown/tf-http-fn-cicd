@@ -62,5 +62,5 @@ jobs:
           --schedule="every 5 minutes" \
           --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \
           --message-body='{}' \
-          --time-zone="us-central1" \
+          --time-zone="America/Montreal" \
           --http-method="POST"          
