@@ -47,13 +47,7 @@ jobs:
 
 #using compute sa to build
 
-#        gcloud scheduler jobs delete my-scheduler
-#        gcloud scheduler jobs create http my-scheduler \
-#          --schedule="every 5 minutes" \
-#          --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \
-#          --message-body='{}' \
-#          --time-zone="America/Montreal" \
-#          --location="us-central1"
+
 
 
     - id: 'gcloud'
@@ -69,3 +63,10 @@ jobs:
           --trigger-http \
           --ingress-settings=internal-only \
           --allow-unauthenticated        
+
+        gcloud scheduler jobs create http my-scheduler \
+          --schedule="0 0 * * *" \
+          --uri="https://us-central1-my-second-project-418213.cloudfunctions.net/java-http-function2" \
+          --message-body='{}' \
+          --time-zone="America/Montreal" \
+          --location="us-central1"

@@ -21,4 +21,5 @@ INSERT INTO birds (bird , description) VALUES
 ('pigeon', 'common in cities'),
 ('eagle', 'bird of prey');
 
-
+Role: Cloud SQL Client 
+Execute Cloud SQL
