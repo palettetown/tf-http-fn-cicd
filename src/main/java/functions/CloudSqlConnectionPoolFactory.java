@@ -12,7 +12,7 @@ public class CloudSqlConnectionPoolFactory {
   private static final String INSTANCE_CONNECTION_NAME =
       "my-second-project-418213:us-central1:my-instance";
   private static final String DB_USER = "postgres";
-  private static final String DB_PASS = "postgres";
+  private static final String DB_PASS = System.getenv("DB_PASS");
   private static final String DB_NAME = "bird_encyclopedia";
 
   public static DataSource createConnectionPool() {
