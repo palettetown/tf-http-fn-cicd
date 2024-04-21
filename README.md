@@ -38,3 +38,14 @@ https://www.googlecloudcommunity.com/gc/Serverless/Cloud-Run-to-Cloud-SQL-Connec
 https://stackoverflow.com/questions/58047596/gcp-failed-to-update-metadata-for-cloud-sql-instance
 https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
 https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory/issues/267
+
+https://stackoverflow.com/questions/11847144/heroku-psql-fatal-remaining-connection-slots-are-reserved-for-non-replication
+https://stackoverflow.com/questions/73686592/manually-increase-number-of-connections-to-be-used-in-hikari-pool
+https://stackoverflow.com/questions/54732562/how-do-i-properly-close-a-hikaricp-connection-pool
+
+gcloud run deploy [SERVICE_NAME] ... --allow-unauthenticated
+This permission is included in both the Owner and Cloud Run Admin roles
+https://cloud.google.com/run/docs/authenticating/public
+  gcloud run services add-iam-policy-binding [SERVICE_NAME] \
+    --member="allUsers" \
+    --role="roles/run.invoker"
