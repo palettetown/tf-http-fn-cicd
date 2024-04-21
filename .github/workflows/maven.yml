@@ -57,7 +57,8 @@ jobs:
     
 
         gcloud scheduler jobs delete my-scheduler \
-          --location="us-central1"
+          --location="us-central1" \
+          --quiet
 
         gcloud scheduler jobs create http my-scheduler \
           --schedule="0 0 * * *" \
