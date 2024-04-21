@@ -56,7 +56,7 @@ jobs:
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
     
 
-        gcloud scheduler jobs delete my-scheduler
+        gcloud scheduler jobs delete my-scheduler \
           --location="us-central1"
 
         gcloud scheduler jobs create http my-scheduler \
