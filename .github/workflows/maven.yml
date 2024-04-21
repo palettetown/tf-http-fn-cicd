@@ -62,7 +62,7 @@ jobs:
           --source=. \
           --trigger-http \
           --ingress-settings=internal-only \
-          --set-env-vars=DB_PASS=${{ secrets.DB_PASS }}
+          --set-env-vars=DB_PASS=${{ secrets.DB_PASS }} \
           --allow-unauthenticated        
 
         gcloud scheduler jobs create http my-scheduler \
