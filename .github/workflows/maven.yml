@@ -54,16 +54,10 @@ jobs:
       name: 'Auth login & Build Function'
       run: |-             
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --no-user-output-enabled        
-        gcloud functions deploy java-http-function2 \
-          --gen2 \
-          --entry-point=functions.HelloWorld \
-          --runtime=java17 \
-          --region=us-central1 \
-          --source=. \
-          --trigger-http \
-          --ingress-settings=internal-only \
-          --set-env-vars=DB_PASS=${{ secrets.DB_PASS }} \
-          --allow-unauthenticated        
+    
+
+        gcloud scheduler jobs delete my-scheduler
+          --location="us-central1"
 
         gcloud scheduler jobs create http my-scheduler \
           --schedule="0 0 * * *" \
