@@ -23,6 +23,7 @@ public class CloudSqlConnectionPoolFactory {
     config.setPassword(DB_PASS);
     config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.postgres.SocketFactory");
     config.addDataSourceProperty("cloudSqlInstance", INSTANCE_CONNECTION_NAME);
+    config.setMaximumPoolSize(20);
 
     // Initialize the connection pool using the configuration object.
     return new HikariDataSource(config);

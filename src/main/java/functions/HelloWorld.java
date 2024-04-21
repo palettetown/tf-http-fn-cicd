@@ -21,6 +21,15 @@ public class HelloWorld implements HttpFunction {
     BufferedWriter writer = response.getWriter();
     writer.write("Hello World!");
     
+    //access secret manager
+	SecretGet secretManager = new SecretGet();
+	try {
+		secretManager.quickstart();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}    
+    
     // Get a new datasource from the method we defined before
     DataSource dataSource = CloudSqlConnectionPoolFactory.createConnectionPool();
 
