@@ -62,4 +62,8 @@ public class HelloWorld implements HttpFunction {
 	}
 
   }
+  
+  public static int getDataCount() {
+      return 7;
+  }
 }

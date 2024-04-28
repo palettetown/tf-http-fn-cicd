@@ -1,2 +1,3 @@
 functions\HelloWorld.class
 functions\CloudSqlConnectionPoolFactory.class
+functions\SecretGet.class
